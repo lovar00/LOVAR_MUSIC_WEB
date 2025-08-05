@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#8b5cf6" />
+  
+  <!-- App Information -->
+  <meta name="description" content="LOVAR MUSIC - Your ultimate music streaming platform with AI recommendations and reels" />
+  <meta name="keywords" content="music, streaming, playlist, songs, reels, dubsmash, AI, recommendations" />
+  <meta name="author" content="LOVAR MUSIC Team" />
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://lovarmusic.com/" />
+  <meta property="og:title" content="LOVAR MUSIC - Stream & Discover" />
+  <meta property="og:description" content="Your ultimate music streaming platform with AI recommendations and reels" />
+  <meta property="og:image" content="%PUBLIC_URL%/og-image.png" />
+  
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image" />
+  <meta property="twitter:url" content="https://lovarmusic.com/" />
+  <meta property="twitter:title" content="LOVAR MUSIC - Stream & Discover" />
+  <meta property="twitter:description" content="Your ultimate music streaming platform with AI recommendations and reels" />
+  <meta property="twitter:image" content="%PUBLIC_URL%/twitter-image.png" />
+  
+  <!-- PWA Configuration -->
+  <link rel="apple-touch-icon" href="%PUBLIC_URL%/icons/icon-192x192.png" />
+  <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+  
+  <!-- iOS PWA Support -->
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="LOVAR MUSIC" />
+  <link rel="apple-touch-icon" sizes="57x57" href="%PUBLIC_URL%/icons/icon-57x57.png" />
+  <link rel="apple-touch-icon" sizes="60x60" href="%PUBLIC_URL%/icons/icon-60x60.png" />
+  <link rel="apple-touch-icon" sizes="72x72" href="%PUBLIC_URL%/icons/icon-72x72.png" />
+  <link rel="apple-touch-icon" sizes="76x76" href="%PUBLIC_URL%/icons/icon-76x76.png" />
+  <link rel="apple-touch-icon" sizes="114x114" href="%PUBLIC_URL%/icons/icon-114x114.png" />
+  <link rel="apple-touch-icon" sizes="120x120" href="%PUBLIC_URL%/icons/icon-120x120.png" />
+  <link rel="apple-touch-icon" sizes="144x144" href="%PUBLIC_URL%/icons/icon-144x144.png" />
+  <link rel="apple-touch-icon" sizes="152x152" href="%PUBLIC_URL%/icons/icon-152x152.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="%PUBLIC_URL%/icons/icon-180x180.png" />
+  
+  <!-- Windows PWA Support -->
+  <meta name="msapplication-TileColor" content="#8b5cf6" />
+  <meta name="msapplication-TileImage" content="%PUBLIC_URL%/icons/icon-144x144.png" />
+  <meta name="msapplication-config" content="%PUBLIC_URL%/browserconfig.xml" />
+  
+  <!-- Preconnect to important domains -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  
+  <!-- Additional Icons -->
+  <link rel="icon" type="image/png" sizes="32x32" href="%PUBLIC_URL%/icons/icon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="%PUBLIC_URL%/icons/icon-16x16.png" />
+  <link rel="mask-icon" href="%PUBLIC_URL%/icons/safari-pinned-tab.svg" color="#8b5cf6" />
+  
+  <!-- Loading styles -->
+  <style>
+    /* Loading screen styles */
+    #initial-loader {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      color: white;
+      font-family: 'Inter', sans-serif;
+    }
+    
+    .loader-logo {
+      font-size: 2.5rem;
+      font-weight: 800;
+      background: linear-gradient(45deg, #8b5cf6, #ec4899);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+    
+    .loader-spinner {
+      width: 50px;
+      height: 50px;
+      border: 3px solid rgba(139, 92, 246, 0.3);
+      border-radius: 50%;
+      border-top-color: #8b5cf6;
+      animation: spin 1s ease-in-out infinite;
+    }
+    
+    .loader-text {
+      margin-top: 1rem;
+      color: #64748b;
+      font-size: 0.9rem;
+    }
+    
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+    
+    /* Hide loader when app loads */
+    .app-loaded #initial-loader {
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s ease-out, visibility 0.3s ease-out;
+    }
+    
+    /* Prevent flash of unstyled content */
+    body {
+      margin: 0;
+      padding: 0;
+      background: #0f172a;
+      color: white;
+      font-family: 'Inter', sans-serif;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    
+    #root {
+      min-height: 100vh;
+    }
+    
+    /* Disable selection on loading screen */
+    #initial-loader {
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+    }
+  </style>
+  
+  <title>LOVAR MUSIC - Stream & Discover</title>
+</head>
+<body>
+  <noscript>
+    <div style="display: flex; align-items: center; justify-content: center; height: 100vh; background: #0f172a; color: white; font-family: Inter, sans-serif; text-align: center; padding: 2rem;">
+      <div>
+        <h1 style="color: #8b5cf6; margin-bottom: 1rem;">🎵 LOVAR MUSIC</h1>
+        <p>You need to enable JavaScript to run this app.</p>
+        <p style="color: #64748b; font-size: 0.9rem;">Please enable JavaScript in your browser and refresh the page.</p>
+      </div>
+    </div>
+  </noscript>
+  
+  <!-- Loading Screen -->
+  <div id="initial-loader">
+    <div class="loader-logo">🎵 LOVAR MUSIC</div>
+    <div class="loader-spinner"></div>
+    <div class="loader-text">Loading your music experience...</div>
+  </div>
+  
+  <!-- React App Root -->
+  <div id="root"></div>
+  
+  <!-- PWA Install Prompt (for browsers that don't show native prompt) -->
+  <div id="pwa-install-banner" style="display: none; position: fixed; bottom: 0; left: 0; right: 0; background: linear-gradient(45deg, #8b5cf6, #ec4899); color: white; padding: 1rem; text-align: center; z-index: 1000;">
+    <p style="margin: 0 0 0.5rem 0; font-weight: 600;">Install LOVAR MUSIC</p>
+    <p style="margin: 0 0 1rem 0; font-size: 0.9rem; opacity: 0.9;">Get the full app experience on your device</p>
+    <div>
+      <button id="pwa-install-btn" style="background: white; color: #8b5cf6; border: none; padding: 0.5rem 1.5rem; border-radius: 0.5rem; font-weight: 600; margin-right: 0.5rem; cursor: pointer;">Install</button>
+      <button id="pwa-dismiss-btn" style="background: transparent; color: white; border: 1px solid white; padding: 0.5rem 1.5rem; border-radius: 0.5rem; font-weight: 600; cursor: pointer;">Later</button>
+    </div>
+  </div>
+  
+  <script>
+    // Service Worker Registration
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js')
+          .then((registration) => {
+            console.log('🎵 LOVAR MUSIC: SW registered successfully');
+            
+            // Check for updates
+            registration.addEventListener('updatefound', () => {
+              const newWorker = registration.installing;
+              newWorker.addEventListener('statechange', () => {
+                if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+                  // New content available, show update notification
+                  if (window.confirm('New version available! Reload to update?')) {
+                    newWorker.postMessage({ type: 'SKIP_WAITING' });
+                    window.location.reload();
+                  }
+                }
+              });
+            });
+          })
+          .catch((error) => {
+            console.log('🎵 LOVAR MUSIC: SW registration failed:', error);
+          });
+      });
+      
+      // Listen for SW messages
+      navigator.serviceWorker.addEventListener('message', (event) => {
+        if (event.data && event.data.type === 'UPLOAD_COMPLETE') {
+          // Handle upload completion from background sync
+          console.log('Upload completed:', event.data.data);
+        }
+      });
+    }
+    
+    // PWA Install Prompt
+    let deferredPrompt;
+    let installPromptShown = localStorage.getItem('pwa-install-prompt-shown');
+    
+    window.addEventListener('beforeinstallprompt', (e) => {
+      e.preventDefault();
+      deferredPrompt = e;
+      
+      // Show custom install banner after 10 seconds if not shown before
+      if (!installPromptShown) {
+        setTimeout(() => {
+          document.getElementById('pwa-install-banner').style.display = 'block';
+        }, 10000);
+      }
+    });
+    
+    // Install button click
+    document.addEventListener('DOMContentLoaded', () => {
+      const installBtn = document.getElementById('pwa-install-btn');
+      const dismissBtn = document.getElementById('pwa-dismiss-btn');
+      const banner = document.getElementById('pwa-install-banner');
+      
+      if (installBtn) {
+        installBtn.addEventListener('click', () => {
+          if (deferredPrompt) {
+            deferredPrompt.prompt();
+            deferredPrompt.userChoice.then((choiceResult) => {
+              if (choiceResult.outcome === 'accepted') {
+                console.log('🎵 LOVAR MUSIC: PWA installed');
+              }
+              deferredPrompt = null;
+              banner.style.display = 'none';
+              localStorage.setItem('pwa-install-prompt-shown', 'true');
+            });
+          }
+        });
+      }
+      
+      if (dismissBtn) {
+        dismissBtn.addEventListener('click', () => {
+          banner.style.display = 'none';
+          localStorage.setItem('pwa-install-prompt-shown', 'true');
+        });
+      }
+    });
+    
+    // App loaded handler
+    window.addEventListener('load', () => {
+      // Hide loading screen after a short delay
+      setTimeout(() => {
+        document.body.classList.add('app-loaded');
+        
+        // Remove loader completely after transition
+        setTimeout(() => {
+          const loader = document.getElementById('initial-loader');
+          if (loader) {
+            loader.remove();
+          }
+        }, 300);
+      }, 1000);
+    });
+    
+    // Performance monitoring
+    if ('performance' in window) {
+      window.addEventListener('load', () => {
+        setTimeout(() => {
+          const perfData = performance.getEntriesByType('navigation')[0];
+          console.log('🎵 LOVAR MUSIC: Page load time:', perfData.loadEventEnd - perfData.fetchStart, 'ms');
+        }, 0);
+      });
+    }
+    
+    // Network status monitoring
+    window.addEventListener('online', () => {
+      console.log('🎵 LOVAR MUSIC: Back online');
+      // You can show a notification here
+    });
+    
+    window.addEventListener('offline', () => {
+      console.log('🎵 LOVAR MUSIC: Gone offline');
+      // You can show an offline notification here
+    });
+    
+    // Media Session API for background playback control
+    if ('mediaSession' in navigator) {
+      navigator.mediaSession.setActionHandler('play', () => {
+        // Will be handled by the React app
+        window.dispatchEvent(new CustomEvent('media-session-play'));
+      });
+      
+      navigator.mediaSession.setActionHandler('pause', () => {
+        window.dispatchEvent(new CustomEvent('media-session-pause'));
+      });
+      
+      navigator.mediaSession.setActionHandler('previoustrack', () => {
+        window.dispatchEvent(new CustomEvent('media-session-previous'));
+      });
+      
+      navigator.mediaSession.setActionHandler('nexttrack', () => {
+        window.dispatchEvent(new CustomEvent('media-session-next'));
+      });
+    }
+  </script>
+</body>
+</html>

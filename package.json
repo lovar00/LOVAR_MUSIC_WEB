@@ -23,7 +23,6 @@
     "helmet": "^6.1.5",
     "express-rate-limit": "^6.7.0",
     "express-validator": "^6.15.0",
-    "cloudinary": "^1.37.3",
     "nodemailer": "^6.9.1",
     "cron": "^2.3.0",
     "sharp": "^0.32.1",
