@@ -1,0 +1,218 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+/* Custom scrollbar styles */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-dark-800;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-dark-600 rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-dark-500;
+}
+
+/* Custom selection styles */
+::selection {
+  @apply bg-accent-purple bg-opacity-30;
+}
+
+::-moz-selection {
+  @apply bg-accent-purple bg-opacity-30;
+}
+
+/* Base styles */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply font-body bg-dark-900 text-white antialiased;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+/* Custom audio player styles */
+.audio-player {
+  @apply w-full bg-dark-800 rounded-lg;
+}
+
+.audio-player::-webkit-media-controls-panel {
+  @apply bg-dark-800;
+}
+
+.audio-player::-webkit-media-controls-play-button,
+.audio-player::-webkit-media-controls-pause-button {
+  @apply bg-accent-purple rounded-full;
+}
+
+/* Loading animations */
+.pulse-ring {
+  @apply absolute rounded-full border border-accent-purple opacity-75;
+  animation: pulse-ring 1.25s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
+}
+
+@keyframes pulse-ring {
+  0% {
+    transform: scale(0.33);
+  }
+  80%, 100% {
+    transform: scale(1.2);
+    opacity: 0;
+  }
+}
+
+/* Music visualizer bars */
+.visualizer-bar {
+  @apply bg-gradient-to-t from-accent-purple to-accent-pink rounded-t-sm;
+  animation: wave 1.5s ease-in-out infinite;
+}
+
+.visualizer-bar:nth-child(2) {
+  animation-delay: 0.1s;
+}
+
+.visualizer-bar:nth-child(3) {
+  animation-delay: 0.2s;
+}
+
+.visualizer-bar:nth-child(4) {
+  animation-delay: 0.3s;
+}
+
+.visualizer-bar:nth-child(5) {
+  animation-delay: 0.4s;
+}
+
+/* Glassmorphism effect */
+.glass {
+  @apply backdrop-blur-lg bg-white bg-opacity-10 border border-white border-opacity-20;
+}
+
+.glass-dark {
+  @apply backdrop-blur-lg bg-dark-800 bg-opacity-60 border border-dark-700;
+}
+
+/* Custom button styles */
+.btn-primary {
+  @apply bg-gradient-to-r from-accent-purple to-accent-pink text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 hover:shadow-glow focus:outline-none focus:ring-2 focus:ring-accent-purple focus:ring-opacity-50;
+}
+
+.btn-secondary {
+  @apply bg-dark-700 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 hover:bg-dark-600 focus:outline-none focus:ring-2 focus:ring-dark-500 focus:ring-opacity-50;
+}
+
+.btn-ghost {
+  @apply text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 hover:bg-white hover:bg-opacity-10 focus:outline-none focus:ring-2 focus:ring-white focus:ring-opacity-50;
+}
+
+/* Input styles */
+.input-primary {
+  @apply w-full px-4 py-3 bg-dark-800 border border-dark-600 rounded-lg text-white placeholder-dark-400 focus:outline-none focus:ring-2 focus:ring-accent-purple focus:border-transparent transition-all duration-300;
+}
+
+/* Card styles */
+.card {
+  @apply bg-dark-800 rounded-xl p-6 border border-dark-700 hover:border-dark-600 transition-all duration-300;
+}
+
+.card-hover {
+  @apply transform hover:scale-105 hover:shadow-glow transition-all duration-300;
+}
+
+/* Progress bar styles */
+.progress-bar {
+  @apply w-full h-2 bg-dark-700 rounded-full overflow-hidden;
+}
+
+.progress-fill {
+  @apply h-full bg-gradient-to-r from-accent-purple to-accent-pink rounded-full transition-all duration-300;
+}
+
+/* Tooltip styles */
+.tooltip {
+  @apply absolute z-50 px-3 py-2 text-sm text-white bg-dark-800 rounded-lg shadow-lg border border-dark-600;
+}
+
+/* Navigation active state */
+.nav-active {
+  @apply text-accent-purple bg-accent-purple bg-opacity-10 border-r-2 border-accent-purple;
+}
+
+/* Custom dropdown styles */
+.dropdown-menu {
+  @apply absolute right-0 mt-2 w-48 bg-dark-800 border border-dark-600 rounded-lg shadow-lg z-50;
+}
+
+.dropdown-item {
+  @apply block px-4 py-2 text-sm text-white hover:bg-dark-700 first:rounded-t-lg last:rounded-b-lg transition-colors duration-200;
+}
+
+/* Loading spinner */
+.spinner {
+  @apply animate-spin rounded-full border-4 border-dark-600 border-t-accent-purple;
+}
+
+/* Custom checkbox and radio styles */
+.checkbox-custom {
+  @apply w-5 h-5 bg-dark-700 border border-dark-600 rounded focus:ring-accent-purple focus:ring-2 text-accent-purple;
+}
+
+.radio-custom {
+  @apply w-5 h-5 bg-dark-700 border border-dark-600 focus:ring-accent-purple focus:ring-2 text-accent-purple;
+}
+
+/* Responsive utilities */
+@layer utilities {
+  .safe-top {
+    padding-top: env(safe-area-inset-top);
+  }
+  
+  .safe-bottom {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+  
+  .safe-left {
+    padding-left: env(safe-area-inset-left);
+  }
+  
+  .safe-right {
+    padding-right: env(safe-area-inset-right);
+  }
+}
+
+/* Hide scrollbar but keep functionality */
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Text gradient */
+.text-gradient {
+  @apply bg-gradient-to-r from-accent-purple to-accent-pink bg-clip-text text-transparent;
+}
+
+/* Animation delays for staggered effects */
+.delay-75 { animation-delay: 75ms; }
+.delay-100 { animation-delay: 100ms; }
+.delay-150 { animation-delay: 150ms; }
+.delay-200 { animation-delay: 200ms; }
+.delay-300 { animation-delay: 300ms; }
+.delay-500 { animation-delay: 500ms; }
+.delay-700 { animation-delay: 700ms; }
+.delay-1000 { animation-delay: 1000ms; }
